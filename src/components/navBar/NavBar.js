@@ -12,16 +12,28 @@ function NavBar() {
                 padding: "20px"
             }}>
             <li>
-                <NavLink to="/" style={{color: 'white'}}>Main</NavLink>
+                <NavLink
+                    to="/"
+                    className={({isActive}) => isActive ? "navActive" : "notActive"}
+                >Main</NavLink>
             </li>
             <li>
-                <NavLink to="/characters" style={{color: 'white'}}>Characters</NavLink>
+                <NavLink
+                    to="/characters"
+                    className={({isActive}) => isActive ? "navActive" : "notActive"}
+                >Characters</NavLink>
             </li>
             <li>
-                <NavLink to="/episodes" style={{color: 'white'}}>Episodes</NavLink>
+                <NavLink
+                    to="/episodes"
+                    className={({isActive}) => isActive ? "navActive" : "notActive"}
+                >Episodes</NavLink>
             </li>
             <li>
-                <NavLink to="/locations" style={{color: 'white'}}>Locations</NavLink>
+                <NavLink
+                    to="/locations"
+                    className={({isActive}) => isActive ? "navActive" : "notActive"}
+                >Locations</NavLink>
             </li>
         </ul>
     );

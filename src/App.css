@@ -2,4 +2,12 @@
   padding: 50px;
 }
 
+.notActive {
+  color: white;
+}
+
+.navActive {
+  color: black;
+}
+
 
