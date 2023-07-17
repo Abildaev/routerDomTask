@@ -3,28 +3,22 @@ import {useFetch} from "../components/hooks/useFetch";
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router-dom";
 import Filter from "../components/filter/Filter";
+import {useSearchParams} from "react-router-dom";
 
 function CharactersPage(props) {
+    let [searchParams] = useSearchParams();
     const {getData, isLoading, data, error} = useFetch('http://localhost:3030/characters');
+
     useEffect(() => {
-        getData()
-    }, []);
-
-    const filterFn = (params) => {
-        getData(params)
-    }
-
-    const refetch = () => {
-        getData()
-    }
+        getData(searchParams)
+    }, [searchParams]);
 
     const {pathname} = useLocation();
+
     return (
         <div>
             <h1>Characters</h1>
-            <Filter filterFn={filterFn} refetch={refetch}/>
-
-
+            <Filter/>
             {isLoading && 'Загрузка...'}
             {error && error}
             <ul>

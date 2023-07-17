@@ -3,9 +3,8 @@ import {useState, useRef} from 'react'
 
 export function useFetch(url) {
 
-    const urlRef = useRef(url);
-    const iteration = useRef(0)
-    const keysRef = useRef('');
+    let urlRef = useRef(url);
+    let iteration = useRef(0)
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
@@ -18,16 +17,15 @@ export function useFetch(url) {
         setError('')
         try {
             if (params) {
-                for (let key in params) {
+                [...params].forEach(elem => {
+                    const [key, value] = elem
                     iteration.current === 0
                         ?
-                        keysRef.current += `?${key}=${params[key]}`
+                        urlRef.current += `?${key}=${value}`
                         :
-                        keysRef.current += `&${key}=${params[key]}`
+                        urlRef.current += `&${key}=${value}`
                     iteration.current += 1;
-                }
-
-                urlRef.current += keysRef.current
+                })
             }
             const response = await fetch(`${urlRef.current}`);
             if (response.status >= 200 && response.status <= 204) {
@@ -42,7 +40,7 @@ export function useFetch(url) {
         } finally {
             setIsLoading(false)
             urlRef.current = url;
-            keysRef.current = ''
+            iteration.current = 0;
         }
     }
     return {getData, isLoading, error, data}

@@ -1,30 +1,21 @@
 import React, {useEffect} from 'react';
 import {useFetch} from "../components/hooks/useFetch";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useSearchParams} from "react-router-dom";
 import Filter from "../components/filter/Filter";
 
 function EpisodePage(props) {
+    let [searchParams] = useSearchParams();
     const {getData, isLoading, data, error} = useFetch('http://localhost:3030/episode');
     useEffect(() => {
-        getData()
-    }, []);
-
-    const filterFn = (params) => {
-        getData(params)
-    }
-
-    const refetch = () => {
-        getData()
-    }
+        getData(searchParams)
+    }, [searchParams]);
 
     const {pathname} = useLocation();
 
     return (
         <div>
             <h1>Episodes</h1>
-            <Filter filterFn={filterFn} refetch={refetch}/>
-
-
+            <Filter/>
             {isLoading && 'Загрузка...'}
             {error && error}
             <ul>
