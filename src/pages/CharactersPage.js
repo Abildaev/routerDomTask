@@ -7,13 +7,16 @@ import {useSearchParams} from "react-router-dom";
 
 function CharactersPage(props) {
     let [searchParams] = useSearchParams();
+    const {pathname, search} = useLocation();
+
+
     const {getData, isLoading, data, error} = useFetch('http://localhost:3030/characters');
 
     useEffect(() => {
-        getData(searchParams)
+        getData(search)
     }, [searchParams]);
 
-    const {pathname} = useLocation();
+
 
     return (
         <div>

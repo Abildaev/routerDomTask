@@ -11,17 +11,15 @@ import DetailLocation from "./components/detailLocation/DetailLocation";
 import DetailEpisodes from "./components/detailEpisodes/DetailEpisodes";
 import LayoutDetail from "./components/hoc/LayoutDetail";
 
+
 function App() {
     return (
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<MainPage/>}/>
                 <Route path="characters" element={<CharactersPage/>}/>
-
                 <Route path="episodes" element={<EpisodePage/>}/>
-
                 <Route path="locations" element={<LocationPage/>}/>
-
             </Route>
 
             <Route path="/" element={<LayoutDetail/>}>

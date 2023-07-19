@@ -5,12 +5,15 @@ import Filter from "../components/filter/Filter";
 
 function EpisodePage(props) {
     let [searchParams] = useSearchParams();
+    const {pathname, search} = useLocation();
+
+
     const {getData, isLoading, data, error} = useFetch('http://localhost:3030/episode');
     useEffect(() => {
-        getData(searchParams)
+        getData(search)
     }, [searchParams]);
 
-    const {pathname} = useLocation();
+
 
     return (
         <div>
