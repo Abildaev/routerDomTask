@@ -1,8 +1,19 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {useAuth} from "../../context/AuthProvider";
 
 
 function NavBar() {
+    const navigate = useNavigate()
+
+    const auth = useAuth()
+
+
+    function logout () {
+
+        auth.signOut(() => navigate("/login", {replace: true}))
+    }
+
     return (
         <ul style={
             {listStyleType: "none",
@@ -35,6 +46,12 @@ function NavBar() {
                     className={({isActive}) => isActive ? "navActive" : "notActive"}
                 >Locations</NavLink>
             </li>
+
+
+            <li>
+                <button onClick={logout}>Logout</button>
+            </li>
+
         </ul>
     );
 }

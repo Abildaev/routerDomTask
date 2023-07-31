@@ -1,9 +1,13 @@
-import React from 'react';
+import {useAuth} from "../context/AuthProvider";
 
-function MainPage(props) {
+
+function MainPage() {
+    const auth = useAuth()
+
+
     return (
         <div>
-            <h1>Welcome</h1>
+            <h1>Welcome {auth.user.username}</h1>
         </div>
     );
 }
